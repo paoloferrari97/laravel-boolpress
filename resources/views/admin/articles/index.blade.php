@@ -42,7 +42,8 @@
                         <td>{{ $article->text }}</td>
                         <td>{{ $article->date }}</td>
                         <td>{{ $article->author }}</td>
-                        <td><a href="{{ route('admin.articles.show', $article->id) }}">View</a> | Edit | Delete</td>
+                        <td><a href="{{ route('admin.articles.show', $article->id) }}">View</a> | <a
+                                href="{{ route('admin.articles.edit', $article->id) }}">Edit</a> | Delete</td>
                     </tr>
                 @endforeach
             </tbody>

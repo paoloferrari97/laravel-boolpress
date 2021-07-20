@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Article;
+
 class HomeController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all();
+        return view('admin.articles.index', compact('articles'));
     }
 
     /**
@@ -44,9 +47,9 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        return view('admin.articles.show', compact('article'));
     }
 
     /**

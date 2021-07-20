@@ -10942,3 +10942,8 @@ a.text-dark:focus {
   }
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+}
+

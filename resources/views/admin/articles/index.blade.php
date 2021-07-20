@@ -43,7 +43,13 @@
                         <td>{{ $article->date }}</td>
                         <td>{{ $article->author }}</td>
                         <td><a href="{{ route('admin.articles.show', $article->id) }}">View</a> | <a
-                                href="{{ route('admin.articles.edit', $article->id) }}">Edit</a> | Delete</td>
+                                href="{{ route('admin.articles.edit', $article->id) }}">Edit</a>
+                            <form action="{{ route('admin.articles.destroy', $article->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

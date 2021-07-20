@@ -12,15 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/* GUESTS */
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::resource('articles', ArticleController::class)->only('index', 'show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/* ADMIN */
 Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('articles', HomeController::class);
 });

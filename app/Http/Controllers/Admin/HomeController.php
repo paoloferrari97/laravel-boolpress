@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.articles.create');
     }
 
     /**
@@ -38,7 +38,17 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newArticle = new Article;
+        $newArticle->title = $request['title'];
+        $newArticle->text = $request['text'];
+        $newArticle->date = $request['date'];
+        $newArticle->author = $request['author'];
+
+        $newArticle->save();
+
+        return redirect()->route('admin.articles.show', $newArticle->id);
     }
 
     /**

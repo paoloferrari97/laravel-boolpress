@@ -47,6 +47,7 @@
                 @endforeach
             </tbody>
         </table>
+        <h2><a href="{{ route('admin.articles.create') }}">Crea nuovo articolo!</a></h2>
     </div>
 
 @endsection

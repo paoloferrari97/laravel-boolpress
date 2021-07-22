@@ -61,7 +61,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -88,8 +88,9 @@
                                     <a class="nav-link {{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}"
                                         {{-- Controllo per classe active da fare anche sugli altri link --}} href="{{ route('admin.dashboard') }}">Dashboard</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Posts</a>
+                                <li class="nav-item nav-pills">
+                                    <a class="nav-link {{ Route::currentRouteName() === 'admin.posts.index' ? 'active' : '' }}"
+                                        href="{{ route('admin.posts.index') }}">Posts</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Users</a>

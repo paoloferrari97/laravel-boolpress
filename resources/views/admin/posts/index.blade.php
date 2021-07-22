@@ -24,7 +24,7 @@
                             <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Edit
                         </a>
                         <a href="#"> <i class="fas fa-trash fa-sm fa-fw"></i> Delete </a>
-                        // Delete sarà dentro un form (serve per il metodo 'DELETE')
+                        {{-- Delete sarà dentro un form (serve per il metodo 'DELETE') --}}
                     </td>
                 </tr>
             @endforeach

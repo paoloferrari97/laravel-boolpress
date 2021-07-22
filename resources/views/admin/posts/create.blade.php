@@ -17,7 +17,8 @@
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
-                aria-describedby="titleHelperr" placeholder="Aggiungi un titolo" value="{{ old('title') }}" />
+                aria-describedby="titleHelperr" placeholder="Aggiungi un titolo" value="{{ old('title') }}" required
+                minlength="5" maxlength="255" />
             <small id="titleHelperr" class="form-text text-muted">Inserisci il titolo del post! (max 255 caratteri)</small>
         </div>
 
@@ -31,7 +32,7 @@
 
         <div class="form-group">
             <label for="body">Body</label>
-            <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="body"
+            <textarea required class="form-control @error('body') is-invalid @enderror" name="body" id="body"
                 rows="5">{{ old('body') }}</textarea>
         </div>
 

@@ -19,8 +19,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
+/* ADMIN */
 Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('posts', PostController::class);
 });
+
+/* GUESTS */
+Route::get('posts', 'PostController@index')->name('posts.index');
+Route::get('posts/{post}', 'PostController@show')->name('posts.show');
+
+Route::get('/', 'PageController@index')->name('home');
+Route::get('about', 'PageController@about')->name('about');
+Route::get('contacts', 'PageController@contacts')->name('contacts');

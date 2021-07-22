@@ -17,14 +17,17 @@
                     <td><img width="100" src="{{ $post->image }}" alt="{{ $post->title }}" /></td>
                     <td>{{ $post->title }}</td>
                     <td>
-                        <a href="{{ route('admin.posts.show', $post->id) }}">
-                            <i class="fas fa-eye fa-sm fa-fw"></i> View
+                        <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">
+                            <i class="fas fa-eye fa-sm fa-fw"></i>
                         </a>
-                        <a href="{{ route('admin.posts.edit', $post->id) }}">
-                            <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Edit
+                        <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary">
+                            <i class="fas fa-pencil-alt fa-sm fa-fw"></i>
                         </a>
-                        <a href="#"> <i class="fas fa-trash fa-sm fa-fw"></i> Delete </a>
-                        {{-- Delete sarà dentro un form (serve per il metodo 'DELETE') --}}
+                        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash fa-xs fa-fw"></i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

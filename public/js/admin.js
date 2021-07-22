@@ -37392,6 +37392,20 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var app = new Vue({
+  el: "#app",
+  data: {},
+  methods: {
+    cancel: function cancel(event) {
+      var result = confirm('Sei sicuro di voler eliminare definitivamente questo post?');
+
+      if (!result) {
+        event.preventDefault();
+      }
+    }
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

@@ -1,4 +1,6 @@
-@extends('layouts.admin') @section('content')
+@extends('layouts.admin')
+
+@section('content')
 
     <div class="d-flex justify-content-between">
         <h1>Tutti i posts!</h1>
@@ -32,7 +34,8 @@
                         <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash fa-xs fa-fw"></i></button>
+                            <button type="submit" @click="cancel($event)" class="btn btn-danger"><i
+                                    class="fas fa-trash fa-xs fa-fw"></i></button>
                         </form>
                     </td>
                 </tr>

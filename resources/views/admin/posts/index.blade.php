@@ -1,6 +1,12 @@
 @extends('layouts.admin') @section('content')
 
-    <h1>All posts</h1>
+    <div class="d-flex justify-content-between">
+        <h1>Tutti i posts!</h1>
+        <a href="{{ route('admin.posts.create') }}" class="btn btn-info d-flex align-items-center">
+            <span><i class="fas fa-plus"></i> Crea nuovo post !</span>
+        </a>
+    </div>
+
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
             <tr>

@@ -22,4 +22,5 @@ Auth::routes();
 
 Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
+    Route::resource('posts', PostController::class);
 });

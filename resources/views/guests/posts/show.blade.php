@@ -1,7 +1,7 @@
 @extends('layouts.app') @section('content')
 
     <div class="container">
-        <img src="{{ $post->image }}" alt="" />
+        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" />
 
         <h1>{{ $post->title }}</h1>
 

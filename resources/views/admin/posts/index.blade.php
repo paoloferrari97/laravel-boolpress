@@ -22,7 +22,12 @@
             @foreach ($posts as $post)
                 <tr>
                     <td scope="row">{{ $post->id }}</td>
-                    <td><img width="100" src="{{ $post->image }}" alt="{{ $post->title }}" /></td>
+                    <td>
+                        {{-- <img width="100" src="{{ $post->image }}" alt="{{ $post->title }}" /> --}}
+                        @if ($post->cover)
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" />
+                        @endif
+                    </td>
                     <td>{{ $post->title }}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">

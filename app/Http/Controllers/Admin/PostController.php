@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Post;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -41,12 +42,17 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'nullable | max:255'
+            /* 'image' => 'nullable | max:255' */
+            'image' => 'nullable | max:50 | image' //per img caricata
         ]);
+
+        $file_path = Storage::disk('public')->put('posts_img', $validatedData['image']); //mettiamo il file in Storage, posts_img
+        $validatedData['image'] = $file_path; //salviamo il link all'immagine in colonna 'image' per ogni nuovo elemento
 
         Post::create($validatedData);
 
         return redirect()->route('admin.posts.index');
+        //return redirect()->route('admin.posts.show', $post->id); oppure questo
     }
 
     /**

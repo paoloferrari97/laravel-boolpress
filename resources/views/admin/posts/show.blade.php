@@ -1,6 +1,11 @@
 @extends('layouts.admin') @section('content')
 
-    <img src="{{ $post->image }}" alt="" />
+    {{-- <img src="{{ $post->image }}" alt="" /> --}}
+
+    @if ($post->cover)
+        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" />
+    @endif
+
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->body }}</p>
 

@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+    <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -39,7 +39,8 @@
             <label for="image">Image</label>
             <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image"
                 aria-describedby="imageHelperr" placeholder="Aggiungi un'immagine" {{-- value="{{ $post->image }}" --}} />
-            <small id="imageHelperr" class="form-text text-muted">Inserisci un'immagine! (max 50 KB)</small>
+            <small id="imageHelperr" class="form-text text-muted">Inserisci un'immagine se vuoi cambiarla! (max 50
+                KB)</small>
         </div>
 
         <div class="form-group">

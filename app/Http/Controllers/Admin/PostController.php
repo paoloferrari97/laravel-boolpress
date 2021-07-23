@@ -100,7 +100,6 @@ class PostController extends Controller
             $file_path = Storage::put('post_img', $validateData['image']);
             $validateData['image'] = $file_path;
             //per eliminare file vecchio
-            //Storage::delete('post_img/' . $post->image);
             Storage::delete($post->image);
         }
 

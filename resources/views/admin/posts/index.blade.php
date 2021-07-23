@@ -24,9 +24,7 @@
                     <td scope="row">{{ $post->id }}</td>
                     <td>
                         {{-- <img width="100" src="{{ $post->image }}" alt="{{ $post->title }}" /> --}}
-                        @if ($post->cover)
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" />
-                        @endif
+                        <img width="100" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
                     </td>
                     <td>{{ $post->title }}</td>
                     <td>

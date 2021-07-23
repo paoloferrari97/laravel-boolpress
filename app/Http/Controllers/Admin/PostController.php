@@ -39,17 +39,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validateData = $request->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
             /* 'image' => 'nullable | max:255' */
-            'image' => 'nullable | max:50 | image' //per img caricata
+            'image' => 'nullable | max:250 | mimes:jpg,png' // or image //per img caricata
         ]);
 
-        $file_path = Storage::disk('public')->put('posts_img', $validatedData['image']); //mettiamo il file in Storage, posts_img
+        $file_path = Storage::disk('public')->put('posts_img', $validateData['image']); //mettiamo il file in Storage, posts_img
         $validatedData['image'] = $file_path; //salviamo il link all'immagine in colonna 'image' per ogni nuovo elemento
 
-        Post::create($validatedData);
+        Post::create($validateData);
 
         return redirect()->route('admin.posts.index');
         //return redirect()->route('admin.posts.show', $post->id); oppure questo

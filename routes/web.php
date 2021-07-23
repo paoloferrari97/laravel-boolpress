@@ -32,3 +32,4 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/', 'PageController@index')->name('home');
 Route::get('about', 'PageController@about')->name('about');
 Route::get('contacts', 'PageController@contacts')->name('contacts');
+Route::post('contacts', 'PageController@sendForm')->name('contacts.send');

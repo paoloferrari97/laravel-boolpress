@@ -47,7 +47,7 @@ class PostController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $file_path = Storage::put('posts_img', $validateData['image']); //mettiamo il file in Storage, posts_img
+            $file_path = Storage::put('post_img', $validateData['image']); //mettiamo il file in Storage, posts_img
             $validateData['image'] = $file_path; //salviamo il link all'immagine in colonna 'image' per ogni nuovo elemento
         }
         //ddd($file_path);
@@ -97,8 +97,11 @@ class PostController extends Controller
         ]);
 
         if (array_key_exists('image', $validateData)) {
-            $file_path = Storage::put('post_images', $validateData['image']);
+            $file_path = Storage::put('post_img', $validateData['image']);
             $validateData['image'] = $file_path;
+            //per eliminare file vecchio
+            //Storage::delete('post_img/' . $post->image);
+            Storage::delete($post->image);
         }
 
         $post->update($validateData);

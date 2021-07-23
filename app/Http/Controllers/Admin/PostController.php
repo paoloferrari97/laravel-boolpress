@@ -46,9 +46,11 @@ class PostController extends Controller
             'image' => 'nullable | max:250 | mimes:jpg,png' // or image //per img caricata
         ]);
 
-        $file_path = Storage::disk('public')->put('posts_img', $validateData['image']); //mettiamo il file in Storage, posts_img
-        $validatedData['image'] = $file_path; //salviamo il link all'immagine in colonna 'image' per ogni nuovo elemento
+        $file_path = Storage::put('posts_img', $validateData['image']); //mettiamo il file in Storage, posts_img
+        $validateData['image'] = $file_path; //salviamo il link all'immagine in colonna 'image' per ogni nuovo elemento
 
+        //ddd($file_path);
+        //ddd($validatedData);
         Post::create($validateData);
 
         return redirect()->route('admin.posts.index');

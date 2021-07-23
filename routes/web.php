@@ -31,5 +31,11 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show');
 
 Route::get('/', 'PageController@index')->name('home');
 Route::get('about', 'PageController@about')->name('about');
-Route::get('contacts', 'PageController@contacts')->name('contacts');
-Route::post('contacts', 'PageController@sendForm')->name('contacts.send');
+
+/* OPZIONE 1 */
+/* Route::get('contacts', 'PageController@contacts')->name('contacts');
+Route::post('contacts', 'PageController@sendForm')->name('contacts.send'); */
+
+/* OPZIONE 2 */
+Route::get('contacts', 'ContactController@form')->name('contacts');
+Route::post('contacts', 'ContactController@storeAndSend')->name('contacts.send');

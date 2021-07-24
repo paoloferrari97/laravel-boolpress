@@ -29,7 +29,7 @@ class ContactController extends Controller
 
         //ddd($validateData);
 
-        //return (new ContactFormMail($validateData))->render(); //la indirizzo a schermo per vedere la mail, non la invio
+        //return (new ContactFormMarkdown($validateData))->render(); //la indirizzo a schermo per vedere la mail, non la invio
 
         Mail::to('admin@test.com')->send(new ContactFormMarkdown($contact));
 

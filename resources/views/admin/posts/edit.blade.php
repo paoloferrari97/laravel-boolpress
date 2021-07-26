@@ -45,7 +45,7 @@
 
         <div class="form-group">
             <label for="body">Body</label>
-            <textarea {{-- required --}} class="form-control @error('body') is-invalid @enderror" name="body" id="body"
+            <textarea required class="form-control @error('body') is-invalid @enderror" name="body" id="body"
                 rows="5">{{ $post->body }}</textarea>
         </div>
 

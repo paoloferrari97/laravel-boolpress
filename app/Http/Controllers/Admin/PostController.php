@@ -46,7 +46,8 @@ class PostController extends Controller
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
             /* 'image' => 'nullable | max:255' */
-            'image' => 'nullable | max:50 | mimes:jpg,png' // or image //per img caricata
+            'image' => 'nullable | max:50 | mimes:jpg,png', // or image //per img caricata
+            'category_id' => 'nullable | exists:categories,id' //exists:nometabella,nomecolonna (verifica se il valore esiste in quella colonna di quella tabella)
         ]);
 
         if ($request->hasFile('image')) {
@@ -80,7 +81,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -97,6 +100,7 @@ class PostController extends Controller
             'body' => 'required',
             /* 'image' => 'nullable' */
             'image' => 'nullable | mimes:jpg,png | max:50', // or image
+            'category_id' => 'nullable | exists:categories,id'
         ]);
 
         if (array_key_exists('image', $validateData)) {

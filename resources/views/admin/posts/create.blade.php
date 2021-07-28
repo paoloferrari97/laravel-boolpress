@@ -54,6 +54,18 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="tags">Tags</label>
+            <select class="form-control" name="tags[]" id="tags" multiple> {{-- metto tags[] perchè mi serve array (posso scegliere più di un tag per post) --}}
+                <option value="" disabled>Seleziona un tag</option>
+                @if ($tags)
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Crea</button>
     </form>
 

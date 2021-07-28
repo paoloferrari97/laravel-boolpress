@@ -61,6 +61,19 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="tags">Tags</label>
+            <select class="form-control" name="tags[]" id="tags" multiple>
+                <option value="" disabled>Seleziona un tag</option>
+                @if ($tags)
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}" {{ $post->tags->contains($tag) ? 'select' : '' }}>
+                            {{ $tag->name }}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Modifica</button>
     </form>
 

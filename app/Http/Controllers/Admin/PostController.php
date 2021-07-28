@@ -107,7 +107,8 @@ class PostController extends Controller
             'body' => 'required',
             /* 'image' => 'nullable' */
             'image' => 'nullable | mimes:jpg,png | max:50', // or image
-            'category_id' => 'nullable | exists:categories,id'
+            'category_id' => 'nullable | exists:categories,id',
+            'tags' => 'nullable | exists:tags,id'
         ]);
 
         if (array_key_exists('image', $validateData)) {
@@ -118,6 +119,7 @@ class PostController extends Controller
         }
 
         $post->update($validateData);
+        $post->tags()->sync($request->tags); //sync cancella tutto e riscrive solo chi è in request->tags (o appunto validateData['tags'])
 
         return redirect()->route('admin.posts.index');
     }

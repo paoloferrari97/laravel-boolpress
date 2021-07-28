@@ -8,6 +8,14 @@
     <p>{{ $post->body }}</p>
     <h5>Categoria: {{ $post->category ? $post->category->name : 'Non ancora categorizzato' }}</h5>
     {{-- per mostrare a schermo la categoria (faccio controllo con un operatore ternario, se categoria esiste la mostro, in caso mostro la stringa non ancora categorizzato) --}}
+    <div class="tags">
+        Tags:
+        @forelse($post->tags as $tag)
+            <span>{{ $tag->name }}</span>
+        @empty
+            <span>Non ci sono tag associati a questo post!</span>
+        @endforelse
+    </div>
 
     <a href="{{ route('admin.posts.index') }}"><i class="fas fa-arrow-left fa-sm fa-fw"></i> Back</a>
     <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>

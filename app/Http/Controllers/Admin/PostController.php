@@ -50,7 +50,8 @@ class PostController extends Controller
             'body' => 'required',
             /* 'image' => 'nullable | max:255' */
             'image' => 'nullable | max:50 | mimes:jpg,png', // or image //per img caricata
-            'category_id' => 'nullable | exists:categories,id' //exists:nometabella,nomecolonna (verifica se il valore esiste in quella colonna di quella tabella)
+            'category_id' => 'nullable | exists:categories,id', //exists:nometabella,nomecolonna (verifica se il valore esiste in quella colonna di quella tabella)
+            'tags' => 'nullable | exists:tags,id' //per validare se i tags esistono in tabella tags in colonna id
         ]);
 
         if ($request->hasFile('image')) {
@@ -59,7 +60,8 @@ class PostController extends Controller
         }
         //ddd($file_path);
         //ddd($validatedData);
-        Post::create($validateData);
+        $post = Post::create($validateData);
+        $post->tags()->attach($request->tags); //se passo request o validateData è uguale (tanto sono già validati sopra)
 
         return redirect()->route('admin.posts.index');
         //return redirect()->route('admin.posts.show', $post->id); oppure questo

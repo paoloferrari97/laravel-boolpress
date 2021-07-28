@@ -132,6 +132,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach(); //elimino tutte le relazioni tra il post e i tags (quando voglio eliminare il post). Potrei usare anche $post->tags->sync([]); che il risultato sarebbe uguale
+
         $post->delete();
 
         return redirect()->route('admin.posts.index');

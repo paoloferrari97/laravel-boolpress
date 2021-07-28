@@ -67,8 +67,13 @@
                 <option value="" disabled>Seleziona un tag</option>
                 @if ($tags)
                     @foreach ($tags as $tag)
-                        <option value="{{ $tag->id }}" {{ $post->tags->contains($tag) ? 'select' : '' }}>
-                            {{ $tag->name }}</option>
+                        @if ($errors->any())
+                            <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags')) ? 'selected' : '' }}>
+                                {{ $tag->name }}</option>
+                        @else
+                            <option value="{{ $tag->id }}" {{ $post->tags->contains($tag) ? 'selected' : '' }}>
+                                {{ $tag->name }}</option>
+                        @endif
                     @endforeach
                 @endif
             </select>

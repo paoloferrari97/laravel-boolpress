@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/* per vedere le api l'url è .... /api/posts <-- ottengo il risultato dell'api (json)*/
 
 /* Senza controller */
 //1
@@ -37,7 +38,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 }); */
 
 //3 - con paginazione
-Route::get('posts', function () {
+/* Route::get('posts', function () {
     $posts = Post::paginate(); //di default è 15, se voglio cambio scrivendo tra parentesi
+    return $posts;
+}); */
+
+//4 - con relazioni
+/* Route::get('posts', function () {
+    $posts = Post::with(['tags'])->get(); //in with invoco il metodo definito in modello Post
+    return $posts;
+}); */
+
+//5 - con relazioni e paginazione
+Route::get('posts', function () {
+    $posts = Post::with(['tags'])->paginate();
     return $posts;
 });

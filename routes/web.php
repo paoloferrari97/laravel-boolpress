@@ -39,3 +39,8 @@ Route::post('contacts', 'PageController@sendForm')->name('contacts.send'); */
 /* OPZIONE 2 */
 Route::get('contacts', 'ContactController@form')->name('contacts');
 Route::post('contacts', 'ContactController@storeAndSend')->name('contacts.send');
+
+/* VUE-POSTS */
+Route::get('blog', function () {
+    return view('blog');
+});

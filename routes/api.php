@@ -50,7 +50,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 }); */
 
 //5 - con relazioni e paginazione
-Route::get('posts', function () {
+/* Route::get('posts', function () {
     $posts = Post::with(['tags'])->paginate();
     return $posts;
-});
+}); */
+
+/* Con controller */
+//1
+Route::get('posts', 'API\PostController@index');

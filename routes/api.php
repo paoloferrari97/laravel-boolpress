@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,4 +58,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 /* Con controller */
 //1
+/* Route::get('posts', 'API\PostController@index'); */
+
+/* Risorsa API Eloquent */
+//Per risorsa singola
+/* Route::get('posts/{post}', function (Post $post) {
+    return new PostResource(Post::find($post));
+}); */
+
+//Per risorse multiple
 Route::get('posts', 'API\PostController@index');

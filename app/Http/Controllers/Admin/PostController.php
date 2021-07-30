@@ -63,7 +63,7 @@ class PostController extends Controller
         $post = Post::create($validateData);
         $post->tags()->attach($request->tags); //se passo request o validateData è uguale (tanto sono già validati sopra)
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')/* ->with('message', 'Il post è stato creato correttamente!') */;
         //return redirect()->route('admin.posts.show', $post->id); oppure questo
     }
 
@@ -106,10 +106,22 @@ class PostController extends Controller
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
             /* 'image' => 'nullable' */
-            'image' => 'nullable | mimes:jpg,png | max:50', // or image
+            'image' => 'nullable | mimes:jpg,png | max:50', // or image al posto di mimes //con img non devo mettere required (perchè se non voglio cambiarla mi deve prendere quella vecchia)
             'category_id' => 'nullable | exists:categories,id',
             'tags' => 'nullable | exists:tags,id'
         ]);
+
+        //qui si potrebbe fare controllo se sono stati fatti cambiamenti allora faccio l'update, altrimenti non lo faccio neanche e torno alla pagina index
+        //forse si può fare con il metodo isDirty()
+        //es. 
+        /* if($post->isDirty()){
+            // sono stati fatti cambiamenti, quindi qui metto tutto quello che c'è scritto qua sotto
+            return redirect()->route('admin.posts.index')->with('message', 'Il post è stato modificato correttamente!');
+        } 
+        //fuori dall'if
+        return redirect()->route('admin.posts.index')->with('message', 'Non sono state effettuate modifiche al post!');
+        */
+        //oppure magari getChanges() o $post->asChanged()
 
         if (array_key_exists('image', $validateData)) {
             $file_path = Storage::put('post_img', $validateData['image']);
@@ -121,7 +133,7 @@ class PostController extends Controller
         $post->update($validateData);
         $post->tags()->sync($request->tags); //sync cancella tutto e riscrive solo chi è in request->tags (o appunto validateData['tags'])
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')/* ->with('message', 'Il post è stato modificato correttamente!') */;
     }
 
     /**
@@ -136,6 +148,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')/* ->with('message', 'Il post è stato eliminato correttamente!') */;
     }
 }

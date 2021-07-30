@@ -23,7 +23,7 @@ class CreatePostTagTable extends Migration
             $table->unsignedBigInteger('tag_id')->nullable;
             $table->foreign('tag_id')->references('id')->on('tags');
 
-            /* $table->primary('post_id', 'tag_id'); */ //oppure in alto $table->id();
+            /* $table->primary(['post_id', 'tag_id']); */ //oppure in alto $table->id();
         });
     }
 

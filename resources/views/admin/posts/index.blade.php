@@ -2,6 +2,20 @@
 
 @section('content')
 
+    {{-- @if (session('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{ session('message') }}</strong>
+        </div>
+
+        <script>
+            $(".alert").alert();
+        </script>
+    @endif --}}
+    {{-- SE ATTIVO IL WITH NEL RETURN NEL METODO DESTROY DOVE PASSO IL MESSAGGIO, LO POSSO MOSTRARE QUA POI IN QUESTO DIV --}}
+
     <div class="d-flex justify-content-between">
         <h1>Tutti i posts!</h1>
         <a href="{{ route('admin.posts.create') }}" class="btn btn-info d-flex align-items-center">

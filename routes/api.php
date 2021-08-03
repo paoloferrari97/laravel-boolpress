@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
@@ -68,3 +69,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Per risorse multiple
 Route::get('posts', 'API\PostController@index');
+
+/* API protette */
+Route::middleware('auth:api')->group(function () {
+    Route::get('categories', function () {
+        /* return Category::all(); */
+        return response()->json([
+            'success' => true,
+            'data' => Post::with('category')->get()
+        ], 200);
+    });
+});

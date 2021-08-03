@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             @foreach ($posts as $post)
 
@@ -15,6 +15,10 @@
             @endforeach
         </div>
         {{ $posts->links() }}
+    </div> --}}
+
+    <div class="post-component">
+        <post-component></post-component>
     </div>
 
 @endsection
